@@ -1,189 +1,185 @@
-# BookShoppingCartMvc (A basic e-comm system for beginners)📚🛒
+# 📚 Book Shopping Cart
 
-It is a source code of the youtube tutorial on [Build a Full E-commerce Application Using .NET Core 10, SQL Server 2025, MVC | Complete Tutorial](https://youtu.be/_NzPJSofid8?si=jHuiACNd3dxzT1Go). Initially it was designed to explain how shopping cart 🛒 works in dot net core mvc. But now it has more features except payment gateway. A ⭐ in repository is highly appreciated, helps to promote my content.
+A full-featured online bookstore built with **ASP.NET Core MVC (.NET 10)**, supporting customer shopping, admin management, stock tracking, and order processing — all in one clean, role-based web application.
 
-📢 Initially , this project was built with `.net 7` and `sql server 2022`. But it is `Upgraded to .net 10.0` and `sql server 2025` and I will try to keep it up to date.
+---
 
-## Tech stack 🧑‍💻
+## 🖼️ Overview
 
-   - Dotnet core mvc (.Net 10.0)
-   - MS SQLServer 2025 (Database)
-   - Entity Framework Core (ORM)
-   - Identity Core (Authentication)
-   - Bootstrap 5 (frontend)
+Book Shopping Cart is a multi-role e-commerce web application that allows customers to browse books, manage their cart, and place orders — while giving admins full control over inventory, genres, stock levels, and order fulfillment.
 
-## Tools I have used and their alternative (Updated versions)
+---
 
-- Visual Studio 2026 (Alternatives : .NET SDK + VS Code or .NET SDK + JetBrains Rider).
-- Microsoft Sql Server Management Studio (Alternative : mssql extension for vscode / dbeaver).
-- Instead of manually installing `sql server`, you can also used `sql server` which is spun up in `docker`.
+## ✨ Features
 
-**Note:** Every tool and tech is free for personal use. 
+### 👤 Customer
+- Browse and search books by genre
+- Add/remove items from shopping cart
+- View cart with real-time item count
+- Checkout with delivery & payment details
+- Track order history and status
 
-## Video tutorial 📺
+### 🛠️ Admin
+- Add, update, and delete books (with image upload)
+- Manage book genres
+- Manage stock levels per book
+- View and update order statuses
+- Sales reports — including Top N Selling Books (via Stored Procedure)
+- Admin operations panel
 
-[Build a Full E-commerce Application Using .NET Core 10, SQL Server, MVC | Complete Tutorial](https://youtu.be/_NzPJSofid8?si=jHuiACNd3dxzT1Go)
+---
 
-## How to run the project?🌐
+## 🏗️ Tech Stack
 
-### 1. With docker compse (Quickest way)
+| Layer | Technology |
+|---|---|
+| Framework | ASP.NET Core MVC (.NET 10) |
+| ORM | Entity Framework Core 10 |
+| Database | SQL Server |
+| Authentication | ASP.NET Core Identity |
+| Authorization | Role-Based (Admin / User) |
+| UI | Razor Views + Bootstrap |
+| File Storage | Local file system (image uploads) |
+| Pattern | Repository Pattern + Dependency Injection |
 
-It is the quickest way to run the application. You don't need to install anything on your system, except docker. Make sure you have installed `Docker` in your machine. Now, run the following command
+---
 
-```bash
-docker compose up -d
+## 🗂️ Project Structure
+
+```
+BookShoppingCart-Mvc/
+└── BookShoppingCartMvcUI/
+    ├── Controllers/          # MVC Controllers (Book, Cart, Genre, Stock, Order, Reports)
+    ├── Models/               # Domain models (Book, Order, CartDetail, Stock ...)
+    │   └── DTOs/             # Data Transfer Objects
+    ├── Repositories/         # Repository interfaces and implementations
+    ├── Data/
+    │   ├── ApplicationDbContext.cs
+    │   └── DbSeeder.cs       # Seeds roles, admin user, and default genres
+    ├── Areas/Identity/       # Scaffolded ASP.NET Identity pages
+    ├── Constants/            # Roles and PaymentMethods enums
+    ├── Shared/               # FileService for image upload/delete
+    ├── Migrations/           # EF Core database migrations
+    ├── Views/                # Razor Views per controller
+    ├── Program.cs
+    └── appsettings.json
 ```
 
-- Your application will be served at `http://localhost:8080/`.
-- Admin's `username` and `password` is given below (How to logged-in with admin account??🧑‍💻🧑‍💻).
+---
 
-**Note:** If you want to debug application and want to modify the project, I would recommend to follow the second approach.
+## ⚙️ Getting Started
 
-### 2. Manually setup every thing (Recommended for developers)
+### Prerequisites
 
-Make sure:
-- Either Dotnet sdk 10.0 or VisualStudio 2026 pre-installed in your machine
-- pre-installed Sql server 2025 or spun up it in docker container
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- SQL Server (local or remote)
+- Visual Studio 2022+ or VS Code
 
-Now, you can follow these steps:
-
-1. Open the command prompt. Go to a directory where you want to clone this project. Use this command to clone the project.
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/rd003/BookShoppingCart-Mvc
+git clone https://github.com/your-username/BookShoppingCart-Mvc.git
+cd BookShoppingCart-Mvc
 ```
 
-2. Go to the directory where you have cloned this project, open the directory `BookShoppingCart-Mvc`. You will find a file with name `BookShoppingCartMvc.sln`. Double click on this file and this project will be opened in Visual Studio.
+### 2. Configure the database connection
 
-3. Open `appsettings.json` file and update connection string.
+Open `BookShoppingCartMvcUI/appsettings.json` and update the connection string:
 
 ```json
-"ConnectionStrings": {
-  "conn": "data source=your_server_name;initial catalog=MovieStoreMvc; integrated security=true;encrypt=false"
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=YOUR_SERVER;Database=BookShoppingCartDb;Trusted_Connection=True;TrustServerCertificate=True;"
+  }
 }
 ```
 
-**Note:** It is not mandatory to install `sql server 2025` in your machine. You can spin up the `sql server` in docker container and use that for this application. But in this case your connection string will be different `Server=localhost,1433;Database=BookShoppingCartMvc;User Id=sa;Password=your_password;TrustServerCertificate=True`.
+### 3. Run the application
 
-4. Run the project.
-
-📢 When you run the project for the first time, it will do following things:
-
-- It will generate the database
-- It will seed some data
-- It will create an account for `admin`
-
-## How to logged-in with admin account?? 🧑‍💻🧑‍💻
-
-Click on the link named `login` and get logged-in with these credentials.
-
-```text
-username: admin@gmail.com
-
-password: Admin@123
+```bash
+cd BookShoppingCartMvcUI
+dotnet run
 ```
 
-## Screenshots
+> On first run, the app automatically applies all pending migrations and seeds default data (roles, admin user, and genres).
 
-1.Homepage
+### 4. Login as Admin
 
-![homepage](./screenshots/1.jpg)
+| Field | Value |
+|---|---|
+| Email | `admin@gmail.com` |
+| Password | `Admin@123` |
 
-2.Homepage continued
+---
 
-![homepage2](./screenshots/2.jpg)
+## 🗃️ Database Schema
 
-3.Login
+Key entities and their relationships:
 
-![login](./screenshots/3.jpg)
+```
+Book ──────┬── Genre
+           ├── Stock          (1-to-1)
+           ├── CartDetail     (many-to-many via ShoppingCart)
+           └── OrderDetail    (many-to-many via Order)
 
-4.Registration
+Order ─────┬── OrderStatus
+           ├── OrderDetail
+           └── IdentityUser
 
-![registration](./screenshots/4.jpg)
+ShoppingCart ── CartDetail ── Book
+```
 
-5.Add To Cart
+---
 
-![add-to-cart](./screenshots/5.jpg)
+## 🔐 Roles & Authorization
 
-6.Cart
+| Role | Access |
+|---|---|
+| **Admin** | Full access — books, genres, stock, orders, reports |
+| **User** | Browse books, manage own cart, place & view own orders |
+| **Guest** | Browse books only (no cart or checkout) |
 
-![cart](./screenshots/6.jpg)
+Roles and the default admin account are automatically seeded on first startup via `DbSeeder`.
 
-7.Checkout
+---
 
-![cart](./screenshots/7.jpg)
+## 📦 NuGet Packages
 
-8.Order success
+```xml
+Microsoft.AspNetCore.Identity.EntityFrameworkCore     10.0.0
+Microsoft.AspNetCore.Identity.UI                      10.0.0
+Microsoft.EntityFrameworkCore.SqlServer               10.0.0
+Microsoft.EntityFrameworkCore.Tools                   10.0.0
+Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore  10.0.0
+Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter  10.0.0
+```
 
-![order_suceess](./screenshots/8_order_success.jpg)
+---
 
-9.Admin Login
+## 📊 Reports
 
-![Admin Login](./screenshots/9_admin_login.jpg)
+The Reports section uses a **SQL Server Stored Procedure** to fetch the Top N best-selling books, demonstrating raw SQL integration alongside EF Core.
 
-10.Admin Dashboard
+---
 
-![Admin Dashboard](./screenshots/10%20admin%20dashboard.jpg)
+## 🖼️ Image Upload
 
-11.Orders
+- Supported formats: `.jpg`, `.jpeg`, `.png`
+- Max file size: **1 MB**
+- Handled by `FileService` which saves/deletes files from the server's `wwwroot/images` folder
 
-![Orders](./screenshots/11%20admin%20orders.jpg)
+---
 
-12.Order Detail
+## 🚀 Roadmap / Future Improvements
 
-![Order Detail](./screenshots/12%20admin%20order%20detail.jpg)
+- [ ] Add unit & integration tests (xUnit + Moq)
+- [ ] Integrate structured logging (Serilog)
+- [ ] Add payment gateway integration
+- [ ] Expose a REST API layer
+- [ ] Migrate to Clean Architecture
 
-13.Update Order Status
+---
 
-![Update Order Status](./screenshots/13%20Update%20Order%20Status.jpg)
+## 📄 License
 
-14.Display Stock
-
-![Display Stock](./screenshots/14%20%20display%20stock.jpg)
-
-15.Update Stock
-
-![Update Stock](./screenshots/15%20update%20stock.jpg)
-
-16.Display Genre
-
-![Display Genre](./screenshots/16%20display%20genres.jpg)
-
-17.Add Genre
-
-![Add Genre](./screenshots/17%20add%20genre.jpg)
-
-18.Update Genre
-
-![Update Genre](./screenshots/18%20Update%20Genre.jpg)
-
-19.Display Books
-
-![Display Books](./screenshots/19%20display%20books.jpg)
-
-20.Add Book
-
-![Add Book](./screenshots/20%20add%20books.jpg)
-
-21.Update Book
-
-![Update Book](./screenshots/21%20update%20book.jpg)
-
-22.Top Selling Books
-
-![Top Selling Books](./screenshots/22%20top%20selling%20books.jpg)
-
-## Thanks
-
-If you find this repository useful, then consider to leave a ⭐.
-
-Connect with me
-
-👉 YouTube: <https://youtube.com/@ravindradevrani>
-
-👉 Twitter: <https://twitter.com/ravi_devrani>
-
-Become a supporter ❣️:
-You can buy me a coffee 🍵 : <https://www.buymeacoffee.com/ravindradevrani>
-
-Thanks a lot 🙂🙂
+This project is open source and available under the [MIT License](LICENSE).
