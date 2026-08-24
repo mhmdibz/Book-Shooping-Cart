@@ -157,12 +157,12 @@ Roles and the default admin account are automatically seeded on first startup vi
 ## 📦 NuGet Packages
 
 ```xml
-Microsoft.AspNetCore.Identity.EntityFrameworkCore     10.0.0
-Microsoft.AspNetCore.Identity.UI                      10.0.0
-Microsoft.EntityFrameworkCore.SqlServer               10.0.0
-Microsoft.EntityFrameworkCore.Tools                   10.0.0
-Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore  10.0.0
-Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter  10.0.0
+Microsoft.AspNetCore.Identity.EntityFrameworkCore     10.0.9
+Microsoft.AspNetCore.Identity.UI                      10.0.9
+Microsoft.EntityFrameworkCore.SqlServer               10.0.9
+Microsoft.EntityFrameworkCore.Tools                   10.0.9
+Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore  10.0.9
+Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter  10.0.9
 ```
 
 ---
